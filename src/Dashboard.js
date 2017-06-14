@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
 import EntryList from './EntryList';
 import EntryInput from './EntryInput';
+import firebase from './firebase';
 
 class Dashboard extends Component {
-  entryItems = [
-    {name: "Bryan Cranston"},
-    {name: "Aaron Paul"},
-    {name: "Bob Odenkirk"},
-    {name: "John Doe"}
-  ];
-
   // items;
 
   constructor(props) {
     super(props);
     this.state = {
-      entryItems: this.entryItems
+      entryItems: []
     };
 
     this.addNewEntry = this.addNewEntry.bind(this);
@@ -23,11 +17,27 @@ class Dashboard extends Component {
     this.onUpdateEntry = this.onUpdateEntry.bind(this);
   }
 
-  componentWillMount() {
 
+  componentDidMount() {
+    const itemsRef = firebase.database().ref('items');
+    itemsRef.on('value', (snapshot) => {
+      let items = snapshot.val();
+      let newState = [];
+      for (let item in items) {
+        newState.push({
+          id: item,
+          name: items[item].name
+        });
+      }
+      this.setState({
+        entryItems: newState
+      });
+    });
   }
 
+
   onDelete(index) {
+    console.log(this.state);
     let entries = this.state.entryItems;
     entries.splice(index, 1);
     this.setState({
@@ -36,12 +46,9 @@ class Dashboard extends Component {
   }
 
   addNewEntry(entry) {
-    let newEntry = {name: entry}
-    let entries = this.state.entryItems;
-    entries.push(newEntry);
-    this.setState({
-      entries: entries
-    });
+    const itemsRef = firebase.database().ref('items');
+    const item = { name: entry }
+    itemsRef.push(item);
   }
 
   onUpdateEntry(index, newValue) {

@@ -47,6 +47,7 @@ class EntryItem extends Component {
       return (
         <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
           <input
+            ref={(input) => { this.textInput = input; }}
             onChange={this.onInputChange}
             onKeyUp={this.checkSubmit}
             onBlur={this.onUpdateEntry}
@@ -58,7 +59,9 @@ class EntryItem extends Component {
   }
 
   onDelete() {
-    this.props.onDelete(this.props.index);
+    if (!this.state.editMode) {
+      this.props.onDelete(this.props.index);
+    }
   }
 
   render() {
