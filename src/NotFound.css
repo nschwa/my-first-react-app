@@ -1,0 +1,14 @@
+.not-found h1 {
+  font-size: 20em;
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 0;
+}
+
+.not-found p {
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 1.5em;
+  position: relative;
+  top: -2em;
+}
