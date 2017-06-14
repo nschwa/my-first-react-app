@@ -67,9 +67,11 @@ class EntryItem extends Component {
         <span className="mdl-list__item-primary-content">
           <i className="material-icons mdl-list__item-icon">person</i>
           {this.inputSwitch()}
-          <button onClick={this.onDelete} className="mdl-button mdl-js-button">
-            <i className="material-icons">delete</i>
-          </button>
+          <span className="mdl-list__item-secondary-action">
+            <button onClick={this.onDelete} className="mdl-button mdl-js-button">
+              <i className="material-icons">delete</i>
+            </button>
+          </span>
         </span>
       </li>
     );
