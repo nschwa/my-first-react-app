@@ -29,16 +29,19 @@ class EntryItem extends Component {
     })
   }
 
+
   onUpdateEntry() {
     this.props.onUpdateEntry(this.props.itemId, this.state.inputValue);
     this.toggleEditMode();
   }
+
 
   checkSubmit(e) {
     if (e.nativeEvent.key === 'Enter') {
       this.onUpdateEntry();
     };
   }
+
 
   inputSwitch() {
     if (!this.state.editMode) {
@@ -70,9 +73,11 @@ class EntryItem extends Component {
         <span className="mdl-list__item-primary-content">
           <i className="material-icons mdl-list__item-icon">person</i>
           {this.inputSwitch()}
-          <button onClick={this.onDelete} className="mdl-button mdl-js-button">
-            <i className="material-icons">delete</i>
-          </button>
+          <span className="mdl-list__item-secondary-action">
+            <button onClick={this.onDelete} className="mdl-button mdl-js-button">
+              <i className="material-icons">delete</i>
+            </button>
+          </span>
         </span>
       </li>
     );
