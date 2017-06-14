@@ -12,7 +12,7 @@ class EntryList extends Component {
     return this.props.entries.map((entry, index) => {
       return (
         <EntryItem
-          index={index}
+          itemId={entry.id}
           name={entry.name}
           onDelete={this.props.onDelete}
           onUpdateEntry={this.props.onUpdateEntry}

@@ -36,13 +36,9 @@ class Dashboard extends Component {
   }
 
 
-  onDelete(index) {
-    console.log(this.state);
-    let entries = this.state.entryItems;
-    entries.splice(index, 1);
-    this.setState({
-      entryItems: entries
-    })
+  onDelete(itemId) {
+    const itemRef = firebase.database().ref(`/items/${itemId}`);
+    itemRef.remove();
   }
 
   addNewEntry(entry) {
@@ -51,12 +47,9 @@ class Dashboard extends Component {
     itemsRef.push(item);
   }
 
-  onUpdateEntry(index, newValue) {
-    let entries = this.state.entryItems;
-    entries[index] = {name: newValue};
-    this.setState({
-      entryItems: entries
-    })
+  onUpdateEntry(itemId, newValue) {
+    const itemRef = firebase.database().ref(`/items/${itemId}`);
+    itemRef.update({name: newValue});
   }
 
   render() {

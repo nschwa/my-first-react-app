@@ -30,7 +30,7 @@ class EntryItem extends Component {
   }
 
   onUpdateEntry() {
-    this.props.onUpdateEntry(this.props.index, this.state.inputValue);
+    this.props.onUpdateEntry(this.props.itemId, this.state.inputValue);
     this.toggleEditMode();
   }
 
@@ -42,7 +42,7 @@ class EntryItem extends Component {
 
   inputSwitch() {
     if (!this.state.editMode) {
-      return <span onClick={this.toggleEditMode}>{this.props.index+1}: {this.props.name}</span>
+      return <span onClick={this.toggleEditMode}>{this.props.name}</span>
     } else {
       return (
         <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -60,7 +60,7 @@ class EntryItem extends Component {
 
   onDelete() {
     if (!this.state.editMode) {
-      this.props.onDelete(this.props.index);
+      this.props.onDelete(this.props.itemId);
     }
   }
 
