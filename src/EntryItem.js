@@ -29,16 +29,19 @@ class EntryItem extends Component {
     })
   }
 
+
   onUpdateEntry() {
     this.props.onUpdateEntry(this.props.index, this.state.inputValue);
     this.toggleEditMode();
   }
+
 
   checkSubmit(e) {
     if (e.nativeEvent.key === 'Enter') {
       this.onUpdateEntry();
     };
   }
+
 
   inputSwitch() {
     if (!this.state.editMode) {
